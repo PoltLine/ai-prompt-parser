@@ -1,11 +1,18 @@
 {
   "name": "ai-prompt-parser",
+  "description": "Generator and parser of templated AI prompts",
   "version": "1.0.0",
   "author": {
-    "name": "Thomas Polednik"
+    "name": "Thomas Polednik",
+    "email": "thomaspolednik@gmail.com"
   },
+  "bin": {
+    "ai-prompt": "dist/cli-init.js"
+  },
+  "files": ["dist", "LICENSE", "README.md", "package.json"],
   "private": false,
   "scripts": {
+    "prepublishOnly" : "npm test",
     "prebuild": "npm run clean",
     "build": "npm run build-ts && npm run copy-assets",
     "build-ts": "tsc && tsc-alias",

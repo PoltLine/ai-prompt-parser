@@ -1,5 +1,5 @@
 # AI Prompt Parser
-Generator and parser of templated prompts.
+Generator and parser of templated AI prompts.
 
 # TODO
 - ESLint
