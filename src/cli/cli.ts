@@ -8,7 +8,7 @@ import { parseArguments } from './argument-parse';
 
 // reading environment configuration from the project-local .env file
 // - the path to file will be printed out to console if environment vars not set
-config({ path: CLI.projectFilesFolder + '/.env', debug: !isEnvSet() });
+config({ path: CLI.projectEnvFilePath, debug: !isEnvSet() });
 
 // shared Template Manager
 const templateManager = new TemplateManager();

@@ -59,6 +59,10 @@ function info(message?: unknown, ...optionalParams: unknown[]) {
   console.info(isString(message) ? colourInfo(message) : message, ...optionalParams);
 }
 
+function success(message?: unknown, ...optionalParams: unknown[]) {
+  console.info(isString(message) ? colourSuccess(message) : message, ...optionalParams);
+}
+
 function result(message?: unknown, ...optionalParams: unknown[]) {
   console.log(isString(message) ? colourResult(message) : message, ...optionalParams);
 }
@@ -74,6 +78,7 @@ export const logger = {
   log,
   logObject,
   info,
+  success,
   result,
   logFormat,
 };

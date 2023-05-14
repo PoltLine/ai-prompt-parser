@@ -1,7 +1,7 @@
 import { OpenAIApi, Configuration } from 'openai';
 import { tokenize } from '@shared/helpers/encoding';
 import { logger } from '@shared/logger';
-import { MAX_COMPLETION_TOKEN_COUNT } from './constants';
+import { ENV_VAR_NAMES, MAX_COMPLETION_TOKEN_COUNT } from './constants';
 import { PromptData } from '@prompts/prompt-data';
 import { writeResultToFileOrLogIntoConsole } from './helpers';
 
@@ -34,7 +34,7 @@ export function preInit(newPromptData: PromptData<Record<string, unknown>>): boo
 
 function getEnvApiKey() {
   // eslint-disable-next-line node/no-process-env
-  return process.env.OPENAI_API_KEY;
+  return process.env[ENV_VAR_NAMES.openAIApiKey];
 }
 export function isEnvSet() {
   return !!getEnvApiKey();
