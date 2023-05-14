@@ -1,0 +1,4 @@
+<%# modify a file by sending its contents to the AI with the provided instruction %>
+<%- promptLocals.instruction %>
+
+<%- readFile(promptLocals.contentFilePath, true) %>

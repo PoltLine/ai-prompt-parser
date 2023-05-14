@@ -1,0 +1,4 @@
+<%# generate a Jest unit test from the provided file %>
+Create the code of Jest unit test for the following <%- promptLocals.framework %> <%- getSourceObjectTypeFromFilename(promptLocals.contentFilePath) %> in <%- getSourceLangFromFileExtension(promptLocals.contentFilePath) %>. Do not use jasmine, only Jest! Do not include any information other than the code.
+
+<%- readFile(promptLocals.contentFilePath) %>
