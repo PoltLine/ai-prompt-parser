@@ -29,7 +29,8 @@
     "copy-assets": "copyfiles -u 2 ./src/templates/**/*.ejs ./dist/templates",
     "watch": "nodemon -e \"*\" --watch src --exec \"npm run clean && concurrently \\\"npm run build-ts\\\" \\\"npm run copy-assets\\\"\"",
     "watch-ts": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "app-root-path": "^3.1.0",
