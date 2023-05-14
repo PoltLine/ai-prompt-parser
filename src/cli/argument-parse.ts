@@ -18,6 +18,7 @@ import {
   getLastElemOfArray,
   getNestedObjPropFromKeyPathWithValue,
   mergeObjs,
+  isFunction,
 } from '@shared/helpers/general';
 import { PromptDataBaseSchema, PromptDataBaseDefSettings } from '@prompts/prompt-data.types';
 import { CLI } from './constants';
@@ -69,17 +70,19 @@ function convertSchemaYargsArgPartialDescriptionsToYargsOptionsObj(
     } else {
       optionAlias = undefined;
     }
+    const optionDefault =
+      // if provided via Prompt schema
+      (getNestedObjPropFromKeyPathWithValue(newDefSettings, descriptionObj.argPath) as unknown) ??
+      // from Joi schema
+      descriptionObj?.flags?.default;
     outObj[optionPath] = {
       alias: optionAlias,
       boolean: isBooleanJoiSchemaType(descriptionObj.type) || undefined,
       number: isNumberJoiSchemaType(descriptionObj.type) || undefined,
       string: isStringJoiSchemaType(descriptionObj.type) || undefined,
       description: descriptionObj?.flags?.description,
-      default:
-        // if provided via Prompt schema
-        (getNestedObjPropFromKeyPathWithValue(newDefSettings, descriptionObj.argPath) as unknown) ??
-        // from Joi schema
-        descriptionObj?.flags?.default,
+      // Yargs resolves function defaults, so we need to wrap functions in anonymous function
+      default: isFunction(optionDefault) ? () => optionDefault : optionDefault,
       demandOption:
         // required if marked as "required" and no default value (except for undefined) provided
         // TODO - turned off for now, seems to make problems (even if provided, there is an error about the option
