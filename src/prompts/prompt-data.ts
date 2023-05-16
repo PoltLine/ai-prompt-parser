@@ -20,7 +20,7 @@ export const promptDataBaseDefSettings: PromptDataBaseDefSettings<unknown> = {
     completionTransformer: null,
   },
   aiCompletionRequestOptions: {
-    model: 'gpt-3.5-turbo',
+    model: AIModelName.Gpt35Turbo,
     temperature: 0.1,
     top_p: null,
   },
